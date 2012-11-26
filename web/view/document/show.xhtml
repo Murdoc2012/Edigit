@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    
+    <ui:composition template="/view/template.xhtml">
+        <ui:param name="title" value="Documents"/>
+
+        <ui:define name="body">
+            Overview of current docs
+            <h:form>
+                number of docs: #{documentManager.documents.rowCount}
+                <h:dataTable value="#{documentManager.documents}" var="doc">
+                    <h:column>
+                        <h:outputText value="#{doc.name}"/>
+                    </h:column>
+                    <h:column>
+                        <h:outputText value="#{doc.duration}"/>
+                    </h:column>
+                    <h:column>
+                        <h:commandButton value="edit" action="#{documentManager.edit()}"/>
+                    </h:column>
+                        
+                </h:dataTable>
+
+                <h:commandButton value="new" action="#{documentManager.create()}"/>
+            </h:form>     
+        </ui:define>
+    
+    </ui:composition>
+    
+    
+</html>
+
