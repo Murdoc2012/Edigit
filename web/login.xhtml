@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Edigit Login</title>
     </h:head>
@@ -9,18 +10,20 @@
         Hello World
         Again
         <h:form id="loginform">
-            username:
-            <h:inputText id="username" value="#{authenticator.username}"/>
-            <br/>
-            password:
-            <h:inputText id="password" value="#{authenticator.password}"/>
-            <br/>
-            
-            <h:commandButton value="login" action="#{authenticator.validateUser}"/>
-            
-            
-            <h:commandLink value="create user" action="#{authenticator.createDummyUser()}"/>
-                        
+            <p:panel>
+                username:
+                <h:inputText id="username" value="#{authenticator.username}"/>
+                <br/>
+                password:
+                <h:inputText id="password" value="#{authenticator.password}"/>
+                <br/>
+
+                <h:commandButton value="login" action="#{authenticator.validateUser}"/>
+
+
+                <h:commandLink value="create user" action="#{authenticator.createDummyUser()}"/>
+
+            </p:panel>
         </h:form>
     </h:body>
 </html>
