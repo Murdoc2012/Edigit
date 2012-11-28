@@ -6,6 +6,8 @@ package entities;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -13,36 +15,48 @@ import javax.persistence.Table;
  * @author peter
  */
 @Entity
-@Table(name = "document")
-public class Document extends AbstractEntity implements Serializable {
+@Table(name = "presitem")
+public class PresentationItem extends AbstractEntity implements Serializable {
     
-    private static final long serialVersionUID = 1L;
+    private int position;
     
-    private String name;
-    private int duration;
+    @ManyToOne
+    @JoinColumn(name = "doc_id")
+    private Document document;
     
+    @ManyToOne
+    @JoinColumn(name = "pres_id")
+    private Presentation presentation;
 
-    public int getDuration() {
-        return duration;
+    public int getPosition() {
+        return position;
     }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
+    public void setPosition(int position) {
+        this.position = position;
     }
 
-    public String getName() {
-        return name;
+    public Document getDocument() {
+        return document;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDocument(Document document) {
+        this.document = document;
     }
 
+    public Presentation getPresentation() {
+        return presentation;
+    }
+
+    public void setPresentation(Presentation presentation) {
+        this.presentation = presentation;
+    }
     
     
     
     
-  @Override
+    
+    @Override
     public int hashCode() {
         int hash = 0;
         hash += (this.getId() != null ? this.getId().hashCode() : 0);
@@ -64,7 +78,6 @@ public class Document extends AbstractEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Document[ id=" + getId() + " ]";
+        return "entities.PresentationItem[ id=" + getId() + " ]";
     }
-    
 }

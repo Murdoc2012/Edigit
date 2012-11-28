@@ -5,7 +5,10 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -13,22 +16,15 @@ import javax.persistence.Table;
  * @author peter
  */
 @Entity
-@Table(name = "document")
-public class Document extends AbstractEntity implements Serializable {
-    
-    private static final long serialVersionUID = 1L;
-    
+@Table(name = "presentation")
+public class Presentation extends AbstractEntity implements Serializable {
+
     private String name;
-    private int duration;
     
-
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
+    private boolean activeOne;
+    
+    @OneToMany(mappedBy = "presentation", cascade = CascadeType.ALL)
+    private List<PresentationItem> presItems;
 
     public String getName() {
         return name;
@@ -38,11 +34,29 @@ public class Document extends AbstractEntity implements Serializable {
         this.name = name;
     }
 
+    public boolean isActiveOne() {
+        return activeOne;
+    }
+
+    public void setActiveOne(boolean activeOne) {
+        this.activeOne = activeOne;
+    }
+
+    
+    public List<PresentationItem> getPresItems() {
+        return presItems;
+    }
+
+    public void setPresItems(List<PresentationItem> presItems) {
+        this.presItems = presItems;
+    }
+
+ 
     
     
     
     
-  @Override
+     @Override
     public int hashCode() {
         int hash = 0;
         hash += (this.getId() != null ? this.getId().hashCode() : 0);
@@ -64,7 +78,7 @@ public class Document extends AbstractEntity implements Serializable {
 
     @Override
     public String toString() {
-        return "entities.Document[ id=" + getId() + " ]";
+        return "entities.Presentation[ id=" + getId() + " ]";
     }
     
 }
