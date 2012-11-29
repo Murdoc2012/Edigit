@@ -5,7 +5,12 @@
 package entities;
 
 import java.io.Serializable;
+import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 /**
@@ -20,6 +25,13 @@ public class Document extends AbstractEntity implements Serializable {
     
     private String name;
     private int duration;
+    @Basic(fetch=FetchType.LAZY) 
+    @Lob
+    private byte[] imageData;
+    private String textContent;
+    @Enumerated(EnumType.STRING)
+    private DocumentType documentType;
+    
     
 
     public int getDuration() {
@@ -36,6 +48,30 @@ public class Document extends AbstractEntity implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public DocumentType getDocumentType() {
+        return documentType;
+    }
+
+    public void setDocumentType(DocumentType documentType) {
+        this.documentType = documentType;
+    }
+
+    public byte[] getImageData() {
+        return imageData;
+    }
+
+    public void setImageData(byte[] imageData) {
+        this.imageData = imageData;
+    }
+
+    public String getTextContent() {
+        return textContent;
+    }
+
+    public void setTextContent(String textContent) {
+        this.textContent = textContent;
     }
 
     
@@ -55,7 +91,7 @@ public class Document extends AbstractEntity implements Serializable {
         if (!(object instanceof EUser)) {
             return false;
         }
-        EUser other = (EUser) object;
+        Document other = (Document) object;
         if ((this.getId() == null && other.getId() != null) || (this.getId() != null && !this.getId().equals(other.getId()))) {
             return false;
         }
