@@ -2,13 +2,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:mycomp="http://java.sun.com/jsf/composite/mycomp"
+      xmlns:p="http://primefaces.org/ui">
   
     <ui:composition template="/view/template.xhtml">
     <ui:param name="title" value="Create Document"/>
     
     <ui:define name="body">
         
+        <mycomp:upload uploadListener="#{documentManager.handleFileUpload}"  />
         
         <h:form id="pageForm">
             
@@ -17,6 +20,7 @@
             <h:link value="cancel" outcome="show"/>
             
         </h:form>
+          
     </ui:define>
   </ui:composition>
 </html>

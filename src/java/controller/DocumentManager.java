@@ -11,12 +11,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import org.primefaces.event.FileUploadEvent;
 
 /**
  *
@@ -142,6 +145,11 @@ public class DocumentManager extends AbstractManager implements Serializable {
     
     
     
+    public void handleFileUpload(FileUploadEvent event) {
+		FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+                System.out.println("~~~~~"+event.getFile().getFileName());
+	}
     
     
 }
