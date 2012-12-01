@@ -65,7 +65,7 @@ public class Authenticator {
             }
             
             context.getExternalContext().getSessionMap().put(USER_SESSION_KEY, user);
-            return "/view/home";
+            return "/view/home?faces-redirect=true";
         } else {           
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
                     "Login Failed!",
@@ -85,7 +85,7 @@ public class Authenticator {
         if (session != null) {
             session.invalidate();
         }
-        return "/login.xhtml";
+        return "/login.xhtml?faces-redirect=true";
         
     }
 

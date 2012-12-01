@@ -2,18 +2,28 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>#{title}</title>
     </h:head>
     <h:body>
-        <ui:insert name="body"/>
-        
-        <!-- home link -->
-        <h:form>
-            <h:link value="home" outcome="/view/home"/>
-            <h:commandButton value="logout" action="#{authenticator.logout()}"/>
-        </h:form>
+        <p:layout fullPage="true">
+            
+            <p:layoutUnit position="north" resizable="false" closable="false" header="#{title}">
+                <h:form>
+                    <p:tabMenu activeIndex="#{menuIndex}">  
+                        <p:menuitem value="Home" url="/faces/view/home.xhtml" icon="ui-icon-star"/>  
+                        <p:menuitem value="Documents" url="/faces/view/document/show.xhtml" icon="ui-icon-search" />  
+                        <p:menuitem value="logout"  action="#{authenticator.logout()}"/>
+                    </p:tabMenu>
+                </h:form>
+            </p:layoutUnit>
+            
+            <p:layoutUnit position="center">
+                <ui:insert name="body"/>                
+            </p:layoutUnit>
+        </p:layout>
     </h:body>
 </html>
 

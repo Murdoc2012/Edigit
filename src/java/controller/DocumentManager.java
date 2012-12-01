@@ -78,16 +78,16 @@ public class DocumentManager extends AbstractManager implements Serializable {
     
     public String create(){
         setCurrentDocument(new Document());
-        return "create";
+        return "create?faces-redirect=true";
     }
     
     public String edit(){
         setCurrentDocument(documents.getRowData());
-        return "edit";
+        return "edit?faces-redirect=true";
     }
     
     public String cancelEdit(){
-        return "show";
+        return "show?faces-redirect=true";
     }
     
     public String save(){
@@ -116,7 +116,7 @@ public class DocumentManager extends AbstractManager implements Serializable {
             }
         }
         init();
-        return "show";
+        return "show?faces-redirect=true";
     }
 
     public List<Document> getDocumentList() {
