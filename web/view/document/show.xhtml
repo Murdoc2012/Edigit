@@ -2,7 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
     
     
     <ui:composition template="/view/template.xhtml">
@@ -10,22 +12,37 @@
         <ui:param name="menuIndex" value="1"/>
 
         <ui:define name="body">
-            Overview of current docs
             <h:form>
-                number of docs: #{documentManager.documents.rowCount}
-                <h:dataTable value="#{documentManager.documents}" var="doc">
-                    <h:column>
-                        <h:outputText value="#{doc.name}"/>
-                    </h:column>
-                    <h:column>
+                
+                
+                <p:dataTable value="#{documentManager.documents}" var="doc" emptyMessage="no data"> 
+                    <f:facet name="header">
+                        <h:panelGroup>
+                            <h:commandLink styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-icon-left" 
+                                           type="button" value="" action="#{documentManager.create()}" >
+                                <span class="ui-button-icon-left ui-icon ui-icon-plus"></span>
+                                <span class="ui-button-text">New</span>
+                            </h:commandLink>
+                            <span>Documents</span>
+                        </h:panelGroup>
+                            
+                    </f:facet>
+                    <p:column headerText="Name">  
+                        <h:outputText value="#{doc.name}"/> 
+                    </p:column> 
+                    <p:column headerText="Duration">
                         <h:outputText value="#{doc.duration}"/>
-                    </h:column>
-                    <h:column>
-                        <h:commandButton value="edit" action="#{documentManager.edit()}"/>
-                    </h:column>
-                        
-                </h:dataTable>
-
+                    </p:column>
+                    <p:column>
+                        <h:commandLink styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-icon-only" 
+                                           type="button" value="" action="#{documentManager.edit()}" >
+                                <span class="ui-button-icon-left ui-icon ui-icon-pencil"></span>
+                                <span class="ui-button-text">ui-button</span>
+                        </h:commandLink>
+                    </p:column>
+                 </p:dataTable>
+                
+                
                 <h:commandButton value="new" action="#{documentManager.create()}"/>
             </h:form>     
         </ui:define>

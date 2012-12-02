@@ -1,0 +1,65 @@
+/* 
+    Document   : edigit
+    Created on : 01.12.2012, 22:00:55
+    Author     : peter
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.ui-widget {
+    font-size: 0.7em;
+}
+
+#header {
+    height: 75px;
+}
+#logo{
+    position:absolute;
+    width:200px;
+    top:20px;
+    left:20px;
+}
+
+#userinfo{
+    /*position:absolute;
+    top: 50px;
+    width: 150px;
+    right: 60px;*/
+    float: right;
+    margin-top: 45px;
+    margin-right: 20px;
+}
+#menu {
+    position: absolute;
+    top: 20px;
+    left: 200px;
+    padding: 0;
+    overflow: hidden;
+}
+#menu ul {
+    margin: 0;
+    list-style: none;
+}
+
+#menu li a {
+    display: block;
+    float: left;
+    height: 41px;
+    margin: 0;
+    padding: 18px 40px 0 40px;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+#toolbar{
+    margin-top:2px;
+}
+
+#body{
+    margin-top:10px;
+    
+}
+
+th.ui-datatable-header.ui-widget-header {
+    text-align: left;
+}

@@ -4,6 +4,9 @@
  */
 package security;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.faces.event.PhaseEvent;
@@ -28,11 +31,17 @@ public class AuthenticationPhaseListener implements PhaseListener {
         } else {            
             // send the user to the login view
             if (requestingSecureView(context)) {
-                context.responseComplete();              
-                context.getApplication().
-                        getNavigationHandler().handleNavigation(context, 
-                                                                null, 
-                                                                USER_LOGIN_OUTCOME);
+                context.responseComplete();   
+                try {
+                    context.getExternalContext().redirect("../login.xhtml");
+                    /*context.getApplication().
+                            getNavigationHandler().handleNavigation(context, 
+                                                                    null, 
+                                                                    USER_LOGIN_OUTCOME);
+                                                                    **/
+                } catch (IOException ex) {
+                    Logger.getLogger(AuthenticationPhaseListener.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }

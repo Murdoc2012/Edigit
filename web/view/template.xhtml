@@ -6,24 +6,31 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>#{title}</title>
+        <link type="text/css" rel="stylesheet" href="/Edigit/faces/assets/edigit.css"></link>
     </h:head>
     <h:body>
-        <p:layout fullPage="true">
-            
-            <p:layoutUnit position="north" resizable="false" closable="false" header="#{title}">
-                <h:form>
+        <div id="header" class="ui-widget ui-widget-header">
+            <div id="logo">LOGO here</div>
+            <div id="menu">
+              <h:form>
                     <p:tabMenu activeIndex="#{menuIndex}">  
                         <p:menuitem value="Home" url="/faces/view/home.xhtml" icon="ui-icon-star"/>  
                         <p:menuitem value="Documents" url="/faces/view/document/show.xhtml" icon="ui-icon-search" />  
-                        <p:menuitem value="logout"  action="#{authenticator.logout()}"/>
                     </p:tabMenu>
+              </h:form>
+            </div>
+            <div id="userinfo">
+                #{facesContext.externalContext.sessionMap.get('user').firstname}
+                #{facesContext.externalContext.sessionMap.get('user').lastname}
+                <h:form>
+                    <h:commandLink value="Logout" action="#{authenticator.logout()}" />
                 </h:form>
-            </p:layoutUnit>
-            
-            <p:layoutUnit position="center">
-                <ui:insert name="body"/>                
-            </p:layoutUnit>
-        </p:layout>
+            </div>
+        </div>
+        
+        <div id="body">
+                        <ui:insert name="body"/>                
+        </div>
     </h:body>
 </html>
 
